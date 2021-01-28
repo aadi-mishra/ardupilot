@@ -1,0 +1,417 @@
+// BUILDROOT=/tmp/APMrover2.build HAL_BOARD=HAL_BOARD_APM2 HAL_BOARD_SUBTYPE=HAL_BOARD_SUBTYPE_AVR_APM2 TOOLCHAIN=AVR EXTRAFLAGS=-DGIT_VERSION="074cf8cc"
+%% Parameters.o
+%% control_modes.o
+In file included from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/UARTDriver.h:8:0,
+                 from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/AP_HAL.h:13,
+                 from Rover.h:32,
+                 from control_modes.cpp:3:
+control_modes.cpp: In member function 'void Rover::read_trim_switch()':
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/utility/BetterStream.h:53:76: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+ #define printf_P(fmt, ...) _printf_P((const prog_char *)fmt, ## __VA_ARGS__)
+                                                                            ^
+control_modes.cpp:108:38: note: in expansion of macro 'printf_P'
+                         hal.console->printf_P(PSTR("Learning waypoint %u"), (unsigned)mission.num_commands());
+                                      ^
+%% GCS_Mavlink.o
+%% setup.o
+%% commands_logic.o
+%% sensors.o
+%% Rover.o
+%% failsafe.o
+%% commands_process.o
+%% events.o
+%% navigation.o
+%% system.o
+%% radio.o
+%% Log.o
+%% commands.o
+%% Steering.o
+%% capabilities.o
+%% compat.o
+%% test.o
+%% APMrover2.o
+In file included from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/UARTDriver.h:8:0,
+                 from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/AP_HAL.h:13,
+                 from Rover.h:32,
+                 from APMrover2.cpp:34:
+APMrover2.cpp: In member function 'void Rover::one_second_loop()':
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/utility/BetterStream.h:53:76: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+ #define printf_P(fmt, ...) _printf_P((const prog_char *)fmt, ## __VA_ARGS__)
+                                                                            ^
+APMrover2.cpp:298:26: note: in expansion of macro 'printf_P'
+             hal.console->printf_P(PSTR("G_Dt_max=%lu\n"), (unsigned long)G_Dt_max);
+                          ^
+%% libraries/AP_Common/AP_Common.o
+%% libraries/AP_Common/c++.o
+%% libraries/AP_Progmem/AP_Progmem_AVR.o
+%% libraries/AP_HAL/UARTDriver.o
+%% libraries/AP_HAL/Util.o
+%% libraries/AP_Menu/AP_Menu.o
+%% libraries/AP_Param/AP_Param.o
+In file included from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/UARTDriver.h:8:0,
+                 from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/AP_HAL.h:13,
+                 from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_Param/AP_Param.cpp:27:
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_Param/AP_Param.cpp: In static member function 'static void AP_Param::convert_old_parameter(const AP_Param::ConversionInfo*)':
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/utility/BetterStream.h:53:76: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+ #define printf_P(fmt, ...) _printf_P((const prog_char *)fmt, ## __VA_ARGS__)
+                                                                            ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_Param/AP_Param.cpp:1159:22: note: in expansion of macro 'printf_P'
+         hal.console->printf_P(PSTR("Unknown conversion '%s'\n"), info->new_name);
+                      ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/utility/BetterStream.h:53:76: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+ #define printf_P(fmt, ...) _printf_P((const prog_char *)fmt, ## __VA_ARGS__)
+                                                                            ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_Param/AP_Param.cpp:1189:22: note: in expansion of macro 'printf_P'
+         hal.console->printf_P(PSTR("Bad conversion type '%s'\n"), info->new_name);
+                      ^
+%% libraries/StorageManager/StorageManager.o
+%% libraries/AP_GPS/AP_GPS_UBLOX.o
+%% libraries/AP_GPS/AP_GPS_NMEA.o
+%% libraries/AP_GPS/AP_GPS_SIRF.o
+%% libraries/AP_GPS/GPS_Backend.o
+%% libraries/AP_GPS/AP_GPS_SBP.o
+%% libraries/AP_GPS/AP_GPS.o
+%% libraries/AP_GPS/AP_GPS_MTK19.o
+%% libraries/AP_GPS/AP_GPS_PX4.o
+%% libraries/AP_GPS/AP_GPS_MTK.o
+%% libraries/AP_ADC/AP_ADC.o
+%% libraries/AP_ADC/AP_ADC_ADS1115.o
+%% libraries/AP_ADC/AP_ADC_ADS7844.o
+%% libraries/AP_ADC_AnalogSource/AP_ADC_AnalogSource.o
+%% libraries/AP_Baro/AP_Baro_HIL.o
+%% libraries/AP_Baro/AP_Baro_PX4.o
+%% libraries/AP_Baro/AP_Baro_MS5611.o
+%% libraries/AP_Baro/AP_Baro_Backend.o
+%% libraries/AP_Baro/AP_Baro.o
+%% libraries/AP_Baro/AP_Baro_BMP085.o
+%% libraries/AP_Compass/Compass_learn.o
+%% libraries/AP_Compass/AP_Compass_HIL.o
+%% libraries/AP_Compass/AP_Compass_HMC5843.o
+%% libraries/AP_Compass/AP_Compass_PX4.o
+%% libraries/AP_Compass/AP_Compass_Backend.o
+%% libraries/AP_Compass/Compass.o
+%% libraries/AP_Compass/AP_Compass_AK8963.o
+%% libraries/AP_Math/quaternion.o
+%% libraries/AP_Math/vector2.o
+%% libraries/AP_Math/polygon.o
+%% libraries/AP_Math/matrix3.o
+%% libraries/AP_Math/edc.o
+%% libraries/AP_Math/AP_Math.o
+%% libraries/AP_Math/vector3.o
+%% libraries/AP_Math/location.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_Oilpan.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_Backend.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_HIL.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_MPU9250.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_MPU6000.o
+In file included from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/UARTDriver.h:8:0,
+                 from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/AP_HAL.h:13,
+                 from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_MPU6000.cpp:3:
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_MPU6000.cpp: In member function 'virtual void AP_MPU6000_BusDriver_I2C::read_burst(uint8_t*, AP_HAL::DigitalSource*, uint8_t&)':
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/utility/BetterStream.h:53:76: warning: format not a string literal and no format arguments [-Wformat-security]
+ #define printf_P(fmt, ...) _printf_P((const prog_char *)fmt, ## __VA_ARGS__)
+                                                                            ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_MPU6000.cpp:317:22: note: in expansion of macro 'printf_P'
+         hal.console->printf_P(PSTR("MPU6000: error in i2c read\n"));
+                      ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/utility/BetterStream.h:53:76: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+ #define printf_P(fmt, ...) _printf_P((const prog_char *)fmt, ## __VA_ARGS__)
+                                                                            ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_MPU6000.cpp:327:22: note: in expansion of macro 'printf_P'
+         hal.console->printf_P(PSTR("bytes_read = %d, n_samples %d > 3, dropping samples\n"),
+                      ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/utility/BetterStream.h:53:76: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+ #define printf_P(fmt, ...) _printf_P((const prog_char *)fmt, ## __VA_ARGS__)
+                                                                            ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_MPU6000.cpp:346:22: note: in expansion of macro 'printf_P'
+         hal.console->printf_P(PSTR("MPU6000: error in i2c read %d bytes\n"),
+                      ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_MPU6000.cpp: In member function 'void AP_InertialSensor_MPU6000::_register_write_check(uint8_t, uint8_t)':
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/utility/BetterStream.h:53:76: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+ #define printf_P(fmt, ...) _printf_P((const prog_char *)fmt, ## __VA_ARGS__)
+                                                                            ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor_MPU6000.cpp:650:22: note: in expansion of macro 'printf_P'
+         hal.console->printf_P(PSTR("Values doesn't match; written: %02x; read: %02x "), val, readed);
+                      ^
+%% libraries/AP_InertialSensor/AP_InertialSensor_MPU9150.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_UserInteract_Stream.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_L3G4200D.o
+%% libraries/AP_InertialSensor/AP_InertialSensor.o
+In file included from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/UARTDriver.h:8:0,
+                 from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/AP_HAL.h:13,
+                 from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor.h:30,
+                 from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor.cpp:4:
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor.cpp: In member function 'bool AP_InertialSensor::_calculate_trim(const Vector3f&, float&, float&)':
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/utility/BetterStream.h:53:76: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+ #define printf_P(fmt, ...) _printf_P((const prog_char *)fmt, ## __VA_ARGS__)
+                                                                            ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor.cpp:473:18: note: in expansion of macro 'printf_P'
+     hal.console->printf_P(PSTR("Trim OK: roll=%.2f pitch=%.2f\n"),
+                  ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor.cpp: In member function 'void AP_InertialSensor::_init_gyro()':
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/utility/BetterStream.h:53:76: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+ #define printf_P(fmt, ...) _printf_P((const prog_char *)fmt, ## __VA_ARGS__)
+                                                                            ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_InertialSensor/AP_InertialSensor.cpp:947:26: note: in expansion of macro 'printf_P'
+             hal.console->printf_P(PSTR("gyro[%u] did not converge: diff=%f dps\n"),
+                          ^
+%% libraries/AP_InertialSensor/AP_InertialSensor_Flymaple.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_UserInteract_MAVLink.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_LSM9DS0.o
+%% libraries/AP_InertialSensor/AP_InertialSensor_PX4.o
+%% libraries/AP_AHRS/AP_AHRS_DCM.o
+%% libraries/AP_AHRS/AP_AHRS.o
+%% libraries/AP_AHRS/AP_AHRS_NavEKF.o
+%% libraries/AP_NavEKF/AP_NavEKF.o
+%% libraries/AP_NavEKF/AP_SmallEKF.o
+%% libraries/AP_Mission/AP_Mission.o
+%% libraries/AP_Rally/AP_Rally.o
+%% libraries/AP_Terrain/TerrainIO.o
+%% libraries/AP_Terrain/TerrainMission.o
+%% libraries/AP_Terrain/TerrainGCS.o
+%% libraries/AP_Terrain/AP_Terrain.o
+%% libraries/AP_Terrain/TerrainUtil.o
+%% libraries/PID/PID.o
+%% libraries/RC_Channel/RC_Channel.o
+%% libraries/RC_Channel/RC_Channel_aux.o
+%% libraries/AP_RangeFinder/RangeFinder.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_PX4_PWM.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_PulsedLightLRF.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_analog.o
+%% libraries/AP_RangeFinder/RangeFinder_Backend.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_MaxsonarI2CXL.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_BBB_PRU.o
+%% libraries/AP_RangeFinder/AP_RangeFinder_PX4.o
+%% libraries/Filter/LowPassFilter2p.o
+%% libraries/Filter/DerivativeFilter.o
+%% libraries/AP_Relay/AP_Relay.o
+%% libraries/AP_ServoRelayEvents/AP_ServoRelayEvents.o
+%% libraries/AP_Mount/AP_Mount_Backend.o
+%% libraries/AP_Mount/AP_Gimbal.o
+%% libraries/AP_Mount/AP_Mount_Alexmos.o
+%% libraries/AP_Mount/AP_Mount_SToRM32.o
+%% libraries/AP_Mount/AP_Mount.o
+%% libraries/AP_Mount/AP_Mount_Servo.o
+%% libraries/AP_Mount/AP_Mount_MAVLink.o
+%% libraries/AP_Mount/AP_Mount_SToRM32_serial.o
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_Mount/AP_Mount_SToRM32_serial.cpp: In member function 'bool AP_Mount_SToRM32_serial::can_send(bool)':
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_Mount/AP_Mount_SToRM32_serial.cpp:145:68: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+     return (_reply_type == ReplyType_UNKNOWN) && (_port->txspace() >= required_tx);
+                                                                    ^
+%% libraries/AP_Camera/AP_Camera.o
+%% libraries/GCS_MAVLink/GCS_Common.o
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/GCS_MAVLink/GCS_Common.cpp: In member function 'void GCS_MAVLINK::send_autopilot_version(uint8_t, uint8_t, uint8_t, uint8_t) const':
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/GCS_MAVLink/GCS_Common.cpp:1278:46: warning: left shift count >= width of type [-Wshift-count-overflow]
+     flight_sw_version = major_version << (8*3) | \
+                                              ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/GCS_MAVLink/GCS_Common.cpp:1279:46: warning: left shift count >= width of type [-Wshift-count-overflow]
+                         minor_version << (8*2) | \
+                                              ^
+%% libraries/GCS_MAVLink/GCS_serial_control.o
+%% libraries/GCS_MAVLink/GCS_MAVLink.o
+%% libraries/GCS_MAVLink/GCS_Logs.o
+%% libraries/GCS_MAVLink/MAVLink_routing.o
+%% libraries/AP_SerialManager/AP_SerialManager.o
+%% libraries/AP_Airspeed/AP_Airspeed_I2C.o
+%% libraries/AP_Airspeed/Airspeed_Calibration.o
+%% libraries/AP_Airspeed/AP_Airspeed_analog.o
+%% libraries/AP_Airspeed/AP_Airspeed.o
+%% libraries/AP_Airspeed/AP_Airspeed_PX4.o
+%% libraries/DataFlash/LogFile.o
+%% libraries/DataFlash/DataFlash_APM1.o
+%% libraries/DataFlash/DataFlash_SITL.o
+%% libraries/DataFlash/DataFlash.o
+%% libraries/DataFlash/DataFlash_Block.o
+%% libraries/DataFlash/DataFlash_Empty.o
+%% libraries/DataFlash/DataFlash_File.o
+%% libraries/DataFlash/DataFlash_APM2.o
+%% libraries/AP_RCMapper/AP_RCMapper.o
+%% libraries/SITL/SIM_Helicopter.o
+%% libraries/SITL/SIM_last_letter.o
+%% libraries/SITL/SIM_JSBSim.o
+%% libraries/SITL/SIM_Multicopter.o
+%% libraries/SITL/SIM_Tracker.o
+%% libraries/SITL/SIM_Rover.o
+%% libraries/SITL/SITL.o
+%% libraries/SITL/SIM_Aircraft.o
+%% libraries/SITL/SIM_Balloon.o
+%% libraries/SITL/SIM_Gimbal.o
+%% libraries/SITL/SIM_CRRCSim.o
+%% libraries/SITL/SIM_Gazebo.o
+%% libraries/AP_Scheduler/AP_Scheduler.o
+In file included from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/UARTDriver.h:8:0,
+                 from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/AP_HAL.h:13,
+                 from /home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_Scheduler/AP_Scheduler.cpp:23:
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_Scheduler/AP_Scheduler.cpp: In member function 'void AP_Scheduler::run(uint16_t)':
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/utility/BetterStream.h:53:76: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+ #define printf_P(fmt, ...) _printf_P((const prog_char *)fmt, ## __VA_ARGS__)
+                                                                            ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_Scheduler/AP_Scheduler.cpp:76:34: note: in expansion of macro 'printf_P'
+                     hal.console->printf_P(PSTR("Scheduler slip task[%u] (%u/%u/%u)\n"),
+                                  ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_HAL/utility/BetterStream.h:53:76: warning: format not a string literal, argument types not checked [-Wformat-nonliteral]
+ #define printf_P(fmt, ...) _printf_P((const prog_char *)fmt, ## __VA_ARGS__)
+                                                                            ^
+/home/aadi/Documents/HiWi/APM/ardupilot/libraries/AP_Scheduler/AP_Scheduler.cpp:104:38: note: in expansion of macro 'printf_P'
+                         hal.console->printf_P(PSTR("Scheduler overrun task[%u] (%u/%u)\n"),
+                                      ^
+%% libraries/APM_Control/AP_AutoTune.o
+%% libraries/APM_Control/AP_SteerController.o
+%% libraries/APM_Control/AP_YawController.o
+%% libraries/APM_Control/AP_RollController.o
+%% libraries/APM_Control/AP_PitchController.o
+%% libraries/AP_L1_Control/AP_L1_Control.o
+%% libraries/AP_BoardConfig/AP_BoardConfig.o
+%% libraries/AP_Frsky_Telem/AP_Frsky_Telem.o
+%% libraries/AP_HAL_AVR/AnalogIn_ADC.o
+%% libraries/AP_HAL_AVR/GPIO.o
+%% libraries/AP_HAL_AVR/Scheduler.o
+%% libraries/AP_HAL_AVR/Semaphores.o
+%% libraries/AP_HAL_AVR/SPIDevice_SPI2.o
+%% libraries/AP_HAL_AVR/UARTDriver.o
+%% libraries/AP_HAL_AVR/memcheck.o
+%% libraries/AP_HAL_AVR/RCOutput_APM2.o
+%% libraries/AP_HAL_AVR/Scheduler_Timer.o
+%% libraries/AP_HAL_AVR/RCOutput_APM1.o
+%% libraries/AP_HAL_AVR/HAL_AVR_APM2_Class.o
+%% libraries/AP_HAL_AVR/I2CDriver.o
+%% libraries/AP_HAL_AVR/RCInput_APM2.o
+%% libraries/AP_HAL_AVR/HAL_AVR_APM1_Class.o
+%% libraries/AP_HAL_AVR/SPIDeviceManager_APM2.o
+%% libraries/AP_HAL_AVR/RCInput_APM1.o
+%% libraries/AP_HAL_AVR/SPIDevice_SPI0.o
+%% libraries/AP_HAL_AVR/SPIDevice_SPI3.o
+%% libraries/AP_HAL_AVR/AnalogIn_Common.o
+%% libraries/AP_HAL_AVR/Storage.o
+%% libraries/AP_HAL_AVR/SPIDeviceManager_APM1.o
+%% libraries/AP_HAL_SITL/UARTDriver.o
+%% libraries/AP_HAL_SITL/SITL_State.o
+%% libraries/AP_HAL_SITL/SITL_cmdline.o
+%% libraries/AP_HAL_SITL/HAL_SITL_Class.o
+%% libraries/AP_HAL_SITL/RCOutput.o
+%% libraries/AP_HAL_SITL/sitl_ins.o
+%% libraries/AP_HAL_SITL/Scheduler.o
+%% libraries/AP_HAL_SITL/sitl_gps.o
+%% libraries/AP_HAL_SITL/sitl_compass.o
+%% libraries/AP_HAL_SITL/AnalogIn.o
+%% libraries/AP_HAL_SITL/sitl_barometer.o
+%% libraries/AP_HAL_SITL/Storage.o
+%% libraries/AP_HAL_SITL/RCInput.o
+%% libraries/AP_HAL_SITL/sitl_optical_flow.o
+%% libraries/AP_HAL_PX4/GPIO.o
+%% libraries/AP_HAL_PX4/Scheduler.o
+%% libraries/AP_HAL_PX4/UARTDriver.o
+%% libraries/AP_HAL_PX4/Storage.o
+%% libraries/AP_HAL_PX4/px4_param.o
+%% libraries/AP_HAL_PX4/NSHShellStream.o
+%% libraries/AP_HAL_PX4/RCOutput.o
+%% libraries/AP_HAL_PX4/HAL_PX4_Class.o
+%% libraries/AP_HAL_PX4/AnalogIn.o
+%% libraries/AP_HAL_PX4/Util.o
+%% libraries/AP_HAL_PX4/RCInput.o
+%% libraries/AP_HAL_VRBRAIN/GPIO.o
+%% libraries/AP_HAL_VRBRAIN/UARTDriver.o
+%% libraries/AP_HAL_VRBRAIN/Storage.o
+%% libraries/AP_HAL_VRBRAIN/HAL_VRBRAIN_Class.o
+%% libraries/AP_HAL_VRBRAIN/RCOutput.o
+%% libraries/AP_HAL_VRBRAIN/Scheduler.o
+%% libraries/AP_HAL_VRBRAIN/AnalogIn.o
+%% libraries/AP_HAL_VRBRAIN/Util.o
+%% libraries/AP_HAL_VRBRAIN/RCInput.o
+%% libraries/AP_HAL_FLYMAPLE/GPIO.o
+%% libraries/AP_HAL_FLYMAPLE/Semaphores.o
+%% libraries/AP_HAL_FLYMAPLE/AnalogSource.o
+%% libraries/AP_HAL_FLYMAPLE/UARTDriver.o
+%% libraries/AP_HAL_FLYMAPLE/Storage.o
+%% libraries/AP_HAL_FLYMAPLE/HAL_FLYMAPLE_Class.o
+%% libraries/AP_HAL_FLYMAPLE/I2CDriver.o
+%% libraries/AP_HAL_FLYMAPLE/SPIDriver.o
+%% libraries/AP_HAL_FLYMAPLE/RCOutput.o
+%% libraries/AP_HAL_FLYMAPLE/Scheduler.o
+%% libraries/AP_HAL_FLYMAPLE/AnalogIn.o
+%% libraries/AP_HAL_FLYMAPLE/RCInput.o
+%% libraries/AP_HAL_Linux/GPIO.o
+%% libraries/AP_HAL_Linux/RCOutput_Bebop.o
+%% libraries/AP_HAL_Linux/Scheduler.o
+%% libraries/AP_HAL_Linux/HAL_Linux_Class.o
+%% libraries/AP_HAL_Linux/Semaphores.o
+%% libraries/AP_HAL_Linux/RCInput_Navio.o
+%% libraries/AP_HAL_Linux/AnalogIn_Navio.o
+%% libraries/AP_HAL_Linux/sbus.o
+%% libraries/AP_HAL_Linux/TCPServerDevice.o
+%% libraries/AP_HAL_Linux/UARTDriver.o
+%% libraries/AP_HAL_Linux/Storage.o
+%% libraries/AP_HAL_Linux/RCInput_PRU.o
+%% libraries/AP_HAL_Linux/Storage_FRAM.o
+%% libraries/AP_HAL_Linux/ConsoleDevice.o
+%% libraries/AP_HAL_Linux/GPIO_RPI.o
+%% libraries/AP_HAL_Linux/SPIUARTDriver.o
+%% libraries/AP_HAL_Linux/RCOutput_ZYNQ.o
+%% libraries/AP_HAL_Linux/dsm.o
+%% libraries/AP_HAL_Linux/I2CDriver.o
+%% libraries/AP_HAL_Linux/SPIDriver.o
+%% libraries/AP_HAL_Linux/RCInput_AioPRU.o
+%% libraries/AP_HAL_Linux/UARTDevice.o
+%% libraries/AP_HAL_Linux/RCInput_ZYNQ.o
+%% libraries/AP_HAL_Linux/RCOutput_PRU.o
+%% libraries/AP_HAL_Linux/RCOutput_Navio.o
+%% libraries/AP_HAL_Linux/AnalogIn.o
+%% libraries/AP_HAL_Linux/ToneAlarmDriver.o
+%% libraries/AP_HAL_Linux/RCOutput_AioPRU.o
+%% libraries/AP_HAL_Linux/UDPDevice.o
+%% libraries/AP_HAL_Linux/GPIO_BBB.o
+%% libraries/AP_HAL_Linux/Util.o
+%% libraries/AP_HAL_Linux/RCInput.o
+%% libraries/AP_HAL_Empty/GPIO.o
+%% libraries/AP_HAL_Empty/Semaphores.o
+%% libraries/AP_HAL_Empty/UARTDriver.o
+%% libraries/AP_HAL_Empty/Storage.o
+%% libraries/AP_HAL_Empty/PrivateMember.o
+%% libraries/AP_HAL_Empty/I2CDriver.o
+%% libraries/AP_HAL_Empty/SPIDriver.o
+%% libraries/AP_HAL_Empty/RCOutput.o
+%% libraries/AP_HAL_Empty/Scheduler.o
+%% libraries/AP_HAL_Empty/AnalogIn.o
+%% libraries/AP_HAL_Empty/RCInput.o
+%% libraries/AP_HAL_Empty/HAL_Empty_Class.o
+%% libraries/AP_Notify/ToneAlarm_PX4.o
+%% libraries/AP_Notify/ExternalLED.o
+%% libraries/AP_Notify/ToshibaLED.o
+%% libraries/AP_Notify/NavioLED.o
+%% libraries/AP_Notify/OreoLED_PX4.o
+%% libraries/AP_Notify/ToneAlarm_Linux.o
+%% libraries/AP_Notify/Buzzer.o
+%% libraries/AP_Notify/AP_BoardLED.o
+%% libraries/AP_Notify/ToshibaLED_PX4.o
+%% libraries/AP_Notify/VRBoard_LED.o
+%% libraries/AP_Notify/AP_Notify.o
+%% libraries/AP_Notify/RGBLed.o
+%% libraries/AP_Notify/ToshibaLED_I2C.o
+%% libraries/AP_Notify/NavioLED_I2C.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_SMBus_I2C.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Bebop.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Analog.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_Backend.o
+%% libraries/AP_BattMonitor/AP_BattMonitor.o
+%% libraries/AP_BattMonitor/AP_BattMonitor_SMBus_PX4.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_HIL.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_Linux.o
+%% libraries/AP_OpticalFlow/OpticalFlow_backend.o
+%% libraries/AP_OpticalFlow/OpticalFlow.o
+%% libraries/AP_OpticalFlow/AP_OpticalFlow_PX4.o
+%% libraries/AP_Declination/AP_Declination.o
+%% libraries/AP_HAL/utility/Socket.o
+%% libraries/AP_HAL/utility/utoa_invert.o
+%% libraries/AP_HAL/utility/Print.o
+%% libraries/AP_HAL/utility/print_vprintf.o
+%% libraries/AP_HAL/utility/getopt_cpp.o
+%% libraries/AP_HAL/utility/ftoa_engine.o
+%% libraries/AP_HAL_AVR/utility/pins_arduino_mega.o
+%% libraries/AP_HAL_AVR/utility/ISRRegistry.o
+%% libraries/AP_HAL_FLYMAPLE/utility/flash_stm32.o
+%% libraries/AP_HAL_FLYMAPLE/utility/EEPROM.o
+%% APMrover2.elf
+Firmware is in APMrover2.elf
+%% APMrover2.eep
+%% APMrover2.hex
+
