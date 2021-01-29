@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="modules/mavlink/pymavlink/generator/java/examples"/>
+	<classpathentry kind="src" path="modules/waf/demos/java/animals/junit"/>
+	<classpathentry kind="src" path="modules/waf/demos/java/animals/src"/>
+	<classpathentry kind="src" path="modules/waf/demos/java/cats/src"/>
+	<classpathentry kind="src" path="modules/waf/demos/java/src"/>
+	<classpathentry kind="src" path="modules/waf/demos/java/sup"/>
+	<classpathentry kind="src" path="modules/waf/demos/jni/src/java"/>
+	<classpathentry kind="src" path="modules/waf/playground/eclipse/java/animals/junit"/>
+	<classpathentry kind="src" path="modules/waf/playground/eclipse/java/animals/src"/>
+	<classpathentry kind="src" path="modules/waf/playground/eclipse/java/cats/src"/>
+	<classpathentry kind="src" path="modules/waf/playground/eclipse/java/src"/>
+	<classpathentry kind="src" path="modules/waf/playground/eclipse/java/sup"/>
+	<classpathentry kind="src" path="modules/waf/playground/gcj/more/es"/>
+	<classpathentry kind="src" path="modules/waf/playground/gcj/src"/>
+	<classpathentry kind="src" path="modules/waf/playground/javatest/src"/>
+	<classpathentry kind="src" path="modules/waf/playground/javatest/test"/>
+	<classpathentry kind="src" path="modules/waf/playground/netcache"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
