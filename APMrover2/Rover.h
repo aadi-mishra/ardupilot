@@ -83,7 +83,6 @@
 
 #include <AP_Notify/AP_Notify.h>      // Notify library
 #include <AP_BattMonitor/AP_BattMonitor.h> // Battery monitor library
-#include <AP_OpticalFlow/AP_OpticalFlow.h>     // Optical Flow library
 
 // Configuration
 #include "config.h"
@@ -166,8 +165,6 @@ private:
 
     // Mission library
     AP_Mission mission;
-
-    OpticalFlow optflow;
 
 #if CONFIG_HAL_BOARD == HAL_BOARD_SITL
     SITL sitl;
