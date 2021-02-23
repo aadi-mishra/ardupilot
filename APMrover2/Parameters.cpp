@@ -526,9 +526,6 @@ const AP_Param::Info Rover::var_info[] PROGMEM = {
     GOBJECTN(EKF, NavEKF, "EKF_", NavEKF),
 #endif
 
-    // @Group: MIS_
-    // @Path: ../libraries/AP_Mission/AP_Mission.cpp
-    GOBJECT(mission, "MIS_",       AP_Mission),
 
 	AP_VAREND
 };

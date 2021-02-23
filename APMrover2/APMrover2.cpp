@@ -48,14 +48,11 @@ const AP_Scheduler::Task Rover::scheduler_tasks[] PROGMEM = {
     { SCHED_TASK(read_radio),             1,   1000 },
     { SCHED_TASK(ahrs_update),            1,   6400 },
     { SCHED_TASK(read_sonars),            1,   2000 },
-    { SCHED_TASK(update_current_mode),    1,   1500 },
     { SCHED_TASK(set_servos),             1,   1500 },
     { SCHED_TASK(update_GPS_50Hz),        1,   2500 },
-    { SCHED_TASK(update_GPS_10Hz),        5,   2500 },
     { SCHED_TASK(update_alt),             5,   3400 },
     { SCHED_TASK(navigate),               5,   1600 },
     { SCHED_TASK(update_compass),         5,   2000 },
-    { SCHED_TASK(update_commands),        5,   1000 },
     { SCHED_TASK(update_logging1),        5,   1000 },
     { SCHED_TASK(update_logging2),        5,   1000 },
     { SCHED_TASK(gcs_retry_deferred),     1,   1000 },
@@ -236,7 +233,7 @@ void Rover::update_logging1(void)
 void Rover::update_logging2(void)
 {
     if (should_log(MASK_LOG_STEERING)) {
-        if (control_mode == STEERING || control_mode == AUTO || control_mode == RTL || control_mode == GUIDED) {
+        if (control_mode == STEERING || control_mode == RTL) {
             Log_Write_Steering();
         }
     }
@@ -316,126 +313,6 @@ void Rover::update_GPS_50Hz(void)
     }
 }
 
-
-void Rover::update_GPS_10Hz(void)
-{
-    have_position = ahrs.get_position(current_loc);
-
-    if (have_position && gps.status() >= AP_GPS::GPS_OK_FIX_3D) {
-
-        if (ground_start_count > 1){
-            ground_start_count--;
-
-        } else if (ground_start_count == 1) {
-            // We countdown N number of good GPS fixes
-            // so that the altitude is more accurate
-            // -------------------------------------
-            if (current_loc.lat == 0) {
-                ground_start_count = 20;
-            } else {
-                init_home();
-
-                // set system clock for log timestamps
-                hal.util->set_system_clock(gps.time_epoch_usec());
-
-                if (g.compass_enabled) {
-                    // Set compass declination automatically
-                    compass.set_initial_location(gps.location().lat, gps.location().lng);
-                }
-                ground_start_count = 0;
-            }
-        }
-        Vector3f velocity;
-        if (ahrs.get_velocity_NED(velocity)) {
-            ground_speed = pythagorous2(velocity.x, velocity.y);
-        } else {
-            ground_speed   = gps.ground_speed();
-        }
-    }
-}
-
-void Rover::update_current_mode(void)
-{
-    switch (control_mode){
-    case AUTO:
-    case RTL:
-        set_reverse(false);
-        calc_lateral_acceleration();
-        calc_nav_steer();
-        calc_throttle(g.speed_cruise);
-        break;
-
-    case GUIDED:
-        set_reverse(false);
-        if (rtl_complete || verify_RTL()) {
-            // we have reached destination so stop where we are
-            channel_throttle->servo_out = g.throttle_min.get();
-            channel_steer->servo_out = 0;
-            lateral_acceleration = 0;
-        } else {
-            calc_lateral_acceleration();
-            calc_nav_steer();
-            calc_throttle(g.speed_cruise);
-        }
-        break;
-
-    case STEERING: {
-        /*
-          in steering mode we control lateral acceleration
-          directly. We first calculate the maximum lateral
-          acceleration at full steering lock for this speed. That is
-          V^2/R where R is the radius of turn. We get the radius of
-          turn from half the STEER2SRV_P.
-         */
-        float max_g_force = ground_speed * ground_speed / steerController.get_turn_radius();
-
-        // constrain to user set TURN_MAX_G
-        max_g_force = constrain_float(max_g_force, 0.1f, g.turn_max_g * GRAVITY_MSS);
-
-        lateral_acceleration = max_g_force * (channel_steer->pwm_to_angle()/4500.0f);
-        calc_nav_steer();
-
-        // and throttle gives speed in proportion to cruise speed, up
-        // to 50% throttle, then uses nudging above that.
-        float target_speed = channel_throttle->pwm_to_angle() * 0.01f * 2 * g.speed_cruise;
-        set_reverse(target_speed < 0);
-        if (in_reverse) {
-            target_speed = constrain_float(target_speed, -g.speed_cruise, 0);
-        } else {
-            target_speed = constrain_float(target_speed, 0, g.speed_cruise);
-        }
-        calc_throttle(target_speed);
-        break;
-    }
-
-    case LEARNING:
-    case MANUAL:
-        /*
-          in both MANUAL and LEARNING we pass through the
-          controls. Setting servo_out here actually doesn't matter, as
-          we set the exact value in set_servos(), but it helps for
-          logging
-         */
-        channel_throttle->servo_out = channel_throttle->control_in;
-        channel_steer->servo_out = channel_steer->pwm_to_angle();
-
-        // mark us as in_reverse when using a negative throttle to
-        // stop AHRS getting off
-        set_reverse(channel_throttle->servo_out < 0);
-        break;
-
-    case HOLD:
-        // hold position - stop motors and center steering
-        channel_throttle->servo_out = 0;
-        channel_steer->servo_out = 0;
-        set_reverse(false);
-        break;
-
-    case INITIALISING:
-        break;
-    }
-}
-
 void Rover::update_navigation()
 {
     switch (control_mode) {
@@ -445,31 +322,11 @@ void Rover::update_navigation()
     case STEERING:
     case INITIALISING:
         break;
-
-    case AUTO:
-        mission.update();
-        break;
-
+ 
     case RTL:
         // no loitering around the wp with the rover, goes direct to the wp position
         calc_lateral_acceleration();
         calc_nav_steer();
-        if (verify_RTL()) {
-            channel_throttle->servo_out = g.throttle_min.get();
-            set_mode(HOLD);
-        }
-        break;
-
-    case GUIDED:
-        // no loitering around the wp with the rover, goes direct to the wp position
-        calc_lateral_acceleration();
-        calc_nav_steer();
-        if (rtl_complete || verify_RTL()) {
-            // we have reached destination so stop where we are
-            channel_throttle->servo_out = g.throttle_min.get();
-            channel_steer->servo_out = 0;
-            lateral_acceleration = 0;
-        }
         break;
     }
 }

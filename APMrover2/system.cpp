@@ -241,9 +241,6 @@ void Rover::startup_ground(void)
 	// ---------------------------
 	trim_radio();
 
-    // initialise mission library
-    mission.init();
-
     // we don't want writes to the serial port to cause us to pause
     // so set serial ports non-blocking once we are ready to drive
     serial_manager.set_blocking_writes_all(false);
@@ -276,18 +273,12 @@ void Rover::set_mode(enum mode mode)
 	}
 
     // If we are changing out of AUTO mode reset the loiter timer
-    if (control_mode == AUTO)
-        loiter_start_time = 0;
 
 	control_mode = mode;
     throttle_last = 0;
     throttle = 500;
     set_reverse(false);
     g.pidSpeedThrottle.reset_I();
-
-    if (control_mode != AUTO) {
-        auto_triggered = false;
-    }
         
 	switch(control_mode)
 	{
@@ -296,28 +287,7 @@ void Rover::set_mode(enum mode mode)
 		case LEARNING:
 		case STEERING:
 			break;
-
-		case AUTO:
-            rtl_complete = false;
-            restart_nav();
-			break;
-
-		case RTL:
-			do_RTL();
-			break;
-
-        case GUIDED:
-            rtl_complete = false;
-            /*
-              when entering guided mode we set the target as the current
-              location. This matches the behaviour of the copter code.
-            */
-            guided_WP = current_loc;
-            set_guided_WP();
-            break;
-
 		default:
-			do_RTL();
 			break;
 	}
 
@@ -336,9 +306,6 @@ bool Rover::mavlink_set_mode(uint8_t mode)
     case HOLD:
     case LEARNING:
     case STEERING:
-    case GUIDED:
-    case AUTO:
-    case RTL:
         set_mode((enum mode)mode);
         return true;
     }
@@ -367,24 +334,6 @@ void Rover::failsafe_trigger(uint8_t failsafe_type, bool on)
 
     failsafe.triggered &= failsafe.bits;
 
-    if (failsafe.triggered == 0 && 
-        failsafe.bits != 0 && 
-        millis() - failsafe.start_time > g.fs_timeout*1000 &&
-        control_mode != RTL &&
-        control_mode != HOLD) {
-        failsafe.triggered = failsafe.bits;
-        gcs_send_text_fmt(PSTR("Failsafe trigger 0x%x"), (unsigned)failsafe.triggered);
-        switch (g.fs_action) {
-        case 0:
-            break;
-        case 1:
-            set_mode(RTL);
-            break;
-        case 2:
-            set_mode(HOLD);
-            break;
-        }
-    }
 }
 
 void Rover::startup_INS_ground(void)
@@ -465,12 +414,6 @@ void Rover::print_mode(AP_HAL::BetterStream *port, uint8_t mode)
         break;
     case STEERING:
         port->print_P(PSTR("Steering"));
-        break;
-    case AUTO:
-        port->print_P(PSTR("AUTO"));
-        break;
-    case RTL:
-        port->print_P(PSTR("RTL"));
         break;
     default:
         port->printf_P(PSTR("Mode(%u)"), (unsigned)mode);

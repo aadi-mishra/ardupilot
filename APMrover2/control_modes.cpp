@@ -82,35 +82,6 @@ void Rover::read_trim_switch()
 			if (ch7_flag) {
 				ch7_flag = false;
 
-				if (control_mode == MANUAL) {
-                    hal.console->println_P(PSTR("Erasing waypoints"));
-                    // if SW7 is ON in MANUAL = Erase the Flight Plan
-					mission.clear();
-                    if (channel_steer->control_in > 3000) {
-						// if roll is full right store the current location as home
-                        init_home();
-                    }
-					return;
-				} else if (control_mode == LEARNING || control_mode == STEERING) {    
-                    // if SW7 is ON in LEARNING = record the Wp
-
-				    // create new mission command
-				    AP_Mission::Mission_Command cmd = {};
-
-				    // set new waypoint to current location
-				    cmd.content.location = current_loc;
-
-				    // make the new command to a waypoint
-				    cmd.id = MAV_CMD_NAV_WAYPOINT;
-
-				    // save command
-				    if(mission.add_cmd(cmd)) {
-                        hal.console->printf_P(PSTR("Learning waypoint %u"), (unsigned)mission.num_commands());
-				    }
-                } else if (control_mode == AUTO) {    
-                    // if SW7 is ON in AUTO = set to RTL  
-                    set_mode(RTL);
-                }
             }
         }
         break;

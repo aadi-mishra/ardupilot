@@ -30,10 +30,6 @@ Rover::Rover(void) :
     L1_controller(ahrs),
     nav_controller(&L1_controller),
     steerController(ahrs),
-    mission(ahrs,
-            FUNCTOR_BIND_MEMBER(&Rover::start_command, bool, const AP_Mission::Mission_Command&),
-            FUNCTOR_BIND_MEMBER(&Rover::verify_command_callback, bool, const AP_Mission::Mission_Command&),
-            FUNCTOR_BIND_MEMBER(&Rover::exit_mission, void)),
     num_gcs(MAVLINK_COMM_NUM_BUFFERS),
     ServoRelayEvents(relay),
 

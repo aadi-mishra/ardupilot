@@ -42,7 +42,6 @@
 #include <AP_InertialSensor/AP_InertialSensor.h> // Inertial Sensor (uncalibated IMU) Library
 #include <AP_AHRS/AP_AHRS.h>         // ArduPilot Mega DCM Library
 #include <AP_NavEKF/AP_NavEKF.h>
-#include <AP_Mission/AP_Mission.h>     // Mission command library
 #include <AP_Rally/AP_Rally.h>
 #include <AP_Terrain/AP_Terrain.h>
 #include <PID/PID.h>            // PID library
@@ -161,8 +160,6 @@ private:
     // steering controller
     AP_SteerController steerController;
 
-    // Mission library
-    AP_Mission mission;
 
 #if CONFIG_HAL_BOARD == HAL_BOARD_SITL
     SITL sitl;
@@ -254,9 +251,6 @@ private:
         // time when we last detected an obstacle, in milliseconds
         uint32_t detected_time_ms;
     } obstacle;
-
-    // this is set to true when auto has been triggered to start
-    bool auto_triggered;
 
     // Ground speed
     // The amount current ground speed is below min ground speed.  meters per second
@@ -363,8 +357,6 @@ private:
     void update_aux(void);
     void one_second_loop(void);
     void update_GPS_50Hz(void);
-    void update_GPS_10Hz(void);
-    void update_current_mode(void);
     void update_navigation();
     void send_heartbeat(mavlink_channel_t chan);
     void send_attitude(mavlink_channel_t chan);
@@ -410,18 +402,10 @@ private:
     void calc_lateral_acceleration();
     void calc_nav_steer();
     void set_servos(void);
-    void set_next_WP(const struct Location& loc);
-    void set_guided_WP(void);
-    void init_home();
-    void restart_nav();
-    void exit_mission();
-    void do_RTL(void);
-    bool verify_RTL();
     bool verify_wait_delay();
     bool verify_within_distance();
     void do_take_picture();
     void log_picture();
-    void update_commands(void);
     void delay(uint32_t ms);
     void mavlink_delay(uint32_t ms);
     uint32_t millis();
@@ -475,24 +459,8 @@ private:
     void print_hit_enter();    
     void gcs_send_text_fmt(const prog_char_t *fmt, ...);
     void print_mode(AP_HAL::BetterStream *port, uint8_t mode);
-    bool start_command(const AP_Mission::Mission_Command& cmd);
-    bool verify_command(const AP_Mission::Mission_Command& cmd);
-    bool verify_command_callback(const AP_Mission::Mission_Command& cmd);
-    void do_nav_wp(const AP_Mission::Mission_Command& cmd);
-    bool verify_nav_wp(const AP_Mission::Mission_Command& cmd);
-    void do_loiter_unlimited(const AP_Mission::Mission_Command& cmd);
-    void do_loiter_time(const AP_Mission::Mission_Command& cmd);
-    bool verify_loiter_unlimited(const AP_Mission::Mission_Command& cmd);
-    bool verify_loiter_time(const AP_Mission::Mission_Command& cmd);
-    void do_wait_delay(const AP_Mission::Mission_Command& cmd);
-    void do_within_distance(const AP_Mission::Mission_Command& cmd);
-    void do_change_speed(const AP_Mission::Mission_Command& cmd);
-    void do_set_home(const AP_Mission::Mission_Command& cmd);
-    void do_digicam_configure(const AP_Mission::Mission_Command& cmd);
-    void do_digicam_control(const AP_Mission::Mission_Command& cmd);
     void init_capabilities(void);
     bool in_stationary_loiter(void);
-    void set_loiter_active(const AP_Mission::Mission_Command& cmd);
 
 public:
     bool print_log_menu(void);
@@ -514,7 +482,6 @@ public:
     int8_t test_failsafe(uint8_t argc, const Menu::arg *argv);
     int8_t test_relay(uint8_t argc, const Menu::arg *argv);
     int8_t test_wp(uint8_t argc, const Menu::arg *argv);
-    void test_wp_print(const AP_Mission::Mission_Command& cmd);
     int8_t test_modeswitch(uint8_t argc, const Menu::arg *argv);
     int8_t test_logging(uint8_t argc, const Menu::arg *argv);
     int8_t test_gps(uint8_t argc, const Menu::arg *argv);
