@@ -545,13 +545,6 @@ bool GCS_MAVLINK::try_send_message(enum ap_message id)
         rover.send_rangefinder(chan);
         break;
 
-    case MSG_MOUNT_STATUS:
-#if MOUNT == ENABLED
-        CHECK_PAYLOAD_SIZE(MOUNT_STATUS);
-        rover.camera_mount.status_msg(chan);
-#endif // MOUNT == ENABLED
-        break;
-
     case MSG_RAW_IMU2:
     case MSG_LIMITS_STATUS:
     case MSG_FENCE_STATUS:
@@ -563,13 +556,6 @@ bool GCS_MAVLINK::try_send_message(enum ap_message id)
     case MSG_BATTERY2:
         CHECK_PAYLOAD_SIZE(BATTERY2);
         rover.gcs[chan-MAVLINK_COMM_0].send_battery2(rover.battery);
-        break;
-
-    case MSG_CAMERA_FEEDBACK:
-#if CAMERA == ENABLED
-        CHECK_PAYLOAD_SIZE(CAMERA_FEEDBACK);
-        rover.camera.send_feedback(chan, rover.gps, rover.ahrs, rover.current_loc);
-#endif
         break;
 
     case MSG_EKF_STATUS_REPORT:
@@ -591,7 +577,6 @@ bool GCS_MAVLINK::try_send_message(enum ap_message id)
 
     case MSG_RETRY_DEFERRED:
     case MSG_TERRAIN:
-    case MSG_OPTICAL_FLOW:
     case MSG_GIMBAL_REPORT:
     case MSG_RPM:
         break; // just here to prevent a warning
@@ -820,7 +805,6 @@ GCS_MAVLINK::data_stream_send(void)
         send_message(MSG_RANGEFINDER);
         send_message(MSG_SYSTEM_TIME);
         send_message(MSG_BATTERY2);
-        send_message(MSG_MOUNT_STATUS);
         send_message(MSG_EKF_STATUS_REPORT);
     }
 }
@@ -882,26 +866,6 @@ void GCS_MAVLINK::handleMessage(mavlink_message_t* msg)
                 rover.set_mode(RTL);
                 result = MAV_RESULT_ACCEPTED;
                 break;
-
-#if MOUNT == ENABLED
-            // Sets the region of interest (ROI) for the camera
-            case MAV_CMD_DO_SET_ROI:
-                Location roi_loc;
-                roi_loc.lat = (int32_t)(packet.param5 * 1.0e7f);
-                roi_loc.lng = (int32_t)(packet.param6 * 1.0e7f);
-                roi_loc.alt = (int32_t)(packet.param7 * 100.0f);
-                if (roi_loc.lat == 0 && roi_loc.lng == 0 && roi_loc.alt == 0) {
-                    // switch off the camera tracking if enabled
-                    if (rover.camera_mount.get_mode() == MAV_MOUNT_MODE_GPS_POINT) {
-                        rover.camera_mount.set_mode_to_default();
-                    }
-                } else {
-                    // send the command to the camera mount
-                    rover.camera_mount.set_roi_target(roi_loc);
-                }
-                result = MAV_RESULT_ACCEPTED;
-                break;
-#endif
 
             case MAV_CMD_MISSION_START:
                 rover.set_mode(AUTO);
@@ -1204,34 +1168,6 @@ void GCS_MAVLINK::handleMessage(mavlink_message_t* msg)
             break;
 		}
 #endif // HIL_MODE
-
-#if CAMERA == ENABLED
-    case MAVLINK_MSG_ID_DIGICAM_CONFIGURE:
-    {
-        break;
-    }
-
-    case MAVLINK_MSG_ID_DIGICAM_CONTROL:
-    {
-        rover.camera.control_msg(msg);
-        rover.log_picture();
-        break;
-    }
-#endif // CAMERA == ENABLED
-
-#if MOUNT == ENABLED
-    case MAVLINK_MSG_ID_MOUNT_CONFIGURE:
-		{
-			rover.camera_mount.configure_msg(msg);
-			break;
-		}
-
-    case MAVLINK_MSG_ID_MOUNT_CONTROL:
-		{
-			rover.camera_mount.control_msg(msg);
-			break;
-		}
-#endif // MOUNT == ENABLED
 
     case MAVLINK_MSG_ID_RADIO:
     case MAVLINK_MSG_ID_RADIO_STATUS:

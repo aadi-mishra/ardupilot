@@ -634,40 +634,6 @@ bool AP_Mission::mavlink_to_mission_cmd(const mavlink_mission_item_t& packet, AP
         copy_location = true;
         break;
 
-    case MAV_CMD_DO_SET_ROI:                            // MAV ID: 201
-        copy_location = true;
-        cmd.p1 = packet.param1;                         // 0 = no roi, 1 = next waypoint, 2 = waypoint number, 3 = fixed location, 4 = given target (not supported)
-        break;
-
-    case MAV_CMD_DO_DIGICAM_CONFIGURE:                  // MAV ID: 202
-        cmd.content.digicam_configure.shooting_mode = packet.param1;
-        cmd.content.digicam_configure.shutter_speed = packet.param2;
-        cmd.content.digicam_configure.aperture = packet.param3;
-        cmd.content.digicam_configure.ISO = packet.param4;
-        cmd.content.digicam_configure.exposure_type = packet.x;
-        cmd.content.digicam_configure.cmd_id = packet.y;
-        cmd.content.digicam_configure.engine_cutoff_time = packet.z;
-        break;
-
-    case MAV_CMD_DO_DIGICAM_CONTROL:                    // MAV ID: 203
-        cmd.content.digicam_control.session = packet.param1;
-        cmd.content.digicam_control.zoom_pos = packet.param2;
-        cmd.content.digicam_control.zoom_step = packet.param3;
-        cmd.content.digicam_control.focus_lock = packet.param4;
-        cmd.content.digicam_control.shooting_cmd = packet.x;
-        cmd.content.digicam_control.cmd_id = packet.y;
-        break;
-
-    case MAV_CMD_DO_MOUNT_CONTROL:                      // MAV ID: 205
-        cmd.content.mount_control.pitch = packet.param1;
-        cmd.content.mount_control.roll = packet.param2;
-        cmd.content.mount_control.yaw = packet.param3;
-        break;
-
-    case MAV_CMD_DO_SET_CAM_TRIGG_DIST:                 // MAV ID: 206
-        cmd.content.cam_trigg_dist.meters = packet.param1;  // distance between camera shots in meters
-        break;
-
     case MAV_CMD_DO_FENCE_ENABLE:                       // MAV ID: 207
         cmd.p1 = packet.param1;                         // action 0=disable, 1=enable
         break;
@@ -949,40 +915,6 @@ bool AP_Mission::mission_cmd_to_mavlink(const AP_Mission::Mission_Command& cmd, 
 
     case MAV_CMD_DO_LAND_START:                         // MAV ID: 189
         copy_location = true;
-        break;
-
-    case MAV_CMD_DO_SET_ROI:                            // MAV ID: 201
-        copy_location = true;
-        packet.param1 = cmd.p1;                         // 0 = no roi, 1 = next waypoint, 2 = waypoint number, 3 = fixed location, 4 = given target (not supported)
-        break;
-
-    case MAV_CMD_DO_DIGICAM_CONFIGURE:                  // MAV ID: 202
-        packet.param1 = cmd.content.digicam_configure.shooting_mode;
-        packet.param2 = cmd.content.digicam_configure.shutter_speed;
-        packet.param3 = cmd.content.digicam_configure.aperture;
-        packet.param4 = cmd.content.digicam_configure.ISO;
-        packet.x = cmd.content.digicam_configure.exposure_type;
-        packet.y = cmd.content.digicam_configure.cmd_id;
-        packet.z = cmd.content.digicam_configure.engine_cutoff_time;
-        break;
-
-    case MAV_CMD_DO_DIGICAM_CONTROL:                    // MAV ID: 203
-        packet.param1 = cmd.content.digicam_control.session;
-        packet.param2 = cmd.content.digicam_control.zoom_pos;
-        packet.param3 = cmd.content.digicam_control.zoom_step;
-        packet.param4 = cmd.content.digicam_control.focus_lock;
-        packet.x = cmd.content.digicam_control.shooting_cmd;
-        packet.y = cmd.content.digicam_control.cmd_id;
-        break;
-
-    case MAV_CMD_DO_MOUNT_CONTROL:                      // MAV ID: 205
-        packet.param1 = cmd.content.mount_control.pitch;
-        packet.param2 = cmd.content.mount_control.roll;
-        packet.param3 = cmd.content.mount_control.yaw;
-        break;
-
-    case MAV_CMD_DO_SET_CAM_TRIGG_DIST:                 // MAV ID: 206
-        packet.param1 = cmd.content.cam_trigg_dist.meters;  // distance between camera shots in meters
         break;
 
     case MAV_CMD_DO_FENCE_ENABLE:                       // MAV ID: 207

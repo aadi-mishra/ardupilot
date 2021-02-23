@@ -311,12 +311,6 @@ void MAVLink_routing::get_targets(const mavlink_message_t* msg, int16_t &sysid, 
     
     switch (msg->msgid) {
         // these messages only have a target system
-    case MAVLINK_MSG_ID_CAMERA_FEEDBACK:
-        sysid = mavlink_msg_camera_feedback_get_target_system(msg);
-        break;
-    case MAVLINK_MSG_ID_CAMERA_STATUS:
-        sysid = mavlink_msg_camera_status_get_target_system(msg);
-        break;
     case MAVLINK_MSG_ID_CHANGE_OPERATOR_CONTROL:
         sysid = mavlink_msg_change_operator_control_get_target_system(msg);
         break;

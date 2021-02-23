@@ -55,8 +55,6 @@
 #include <Filter/AverageFilter.h>	// Mode Filter from Filter library
 #include <AP_Relay/AP_Relay.h>       // APM relay
 #include <AP_ServoRelayEvents/AP_ServoRelayEvents.h>
-#include <AP_Mount/AP_Mount.h>		// Camera/Antenna mount
-#include <AP_Camera/AP_Camera.h>		// Camera triggering
 #include <GCS_MAVLink/GCS_MAVLink.h>    // MAVLink GCS definitions
 #include <AP_SerialManager/AP_SerialManager.h>   // Serial manager library
 #include <AP_Airspeed/AP_Airspeed.h>    // needed for AHRS build
@@ -184,19 +182,8 @@ private:
 
     AP_ServoRelayEvents ServoRelayEvents;
 
-    // Camera
-#if CAMERA == ENABLED
-    AP_Camera camera;
-#endif
-
     // The rover's current location
     struct Location current_loc;
-
-    // Camera/Antenna mount tracking and stabilisation stuff
-#if MOUNT == ENABLED
-    // current_loc uses the baro/gps soloution for altitude rather than gps only.
-    AP_Mount camera_mount;
-#endif
 
     // if USB is connected
     bool usb_connected;

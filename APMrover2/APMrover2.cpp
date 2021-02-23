@@ -67,7 +67,6 @@ const AP_Scheduler::Task Rover::scheduler_tasks[] PROGMEM = {
     { SCHED_TASK(read_receiver_rssi),     5,   1000 },
     { SCHED_TASK(update_events),          1,   1000 },
     { SCHED_TASK(check_usb_mux),         15,   1000 },
-    { SCHED_TASK(mount_update),           1,    600 },
     { SCHED_TASK(gcs_failsafe_check),     5,    600 },
     { SCHED_TASK(compass_accumulate),     1,    900 },
     { SCHED_TASK(update_notify),          1,    300 },
@@ -170,18 +169,6 @@ void Rover::ahrs_update()
     }
 }
 
-/*
-  update camera mount - 50Hz
- */
-void Rover::mount_update(void)
-{
-#if MOUNT == ENABLED
-    camera_mount.update();
-#endif
-#if CAMERA == ENABLED
-    camera.trigger_pic_cleanup();
-#endif
-}
 
 void Rover::update_alt()
 {
@@ -364,12 +351,6 @@ void Rover::update_GPS_10Hz(void)
         } else {
             ground_speed   = gps.ground_speed();
         }
-
-#if CAMERA == ENABLED
-        if (camera.update_location(current_loc) == true) {
-            do_take_picture();
-        }
-#endif
     }
 }
 

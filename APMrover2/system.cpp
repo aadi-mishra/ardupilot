@@ -179,11 +179,6 @@ void Rover::init_ardupilot()
 
     relay.init();
 
-#if MOUNT == ENABLED
-    // initialise camera mount
-    camera_mount.init(serial_manager);
-#endif
-
     /*
       setup the 'main loop is dead' check. Note that this relies on
       the RC library being initialised.

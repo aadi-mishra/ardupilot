@@ -36,12 +36,7 @@ Rover::Rover(void) :
             FUNCTOR_BIND_MEMBER(&Rover::exit_mission, void)),
     num_gcs(MAVLINK_COMM_NUM_BUFFERS),
     ServoRelayEvents(relay),
-#if CAMERA == ENABLED
-    camera(&relay),
-#endif
-#if MOUNT == ENABLED
-    camera_mount(ahrs, current_loc),
-#endif
+
     control_mode(INITIALISING),
     ground_start_count(20),
     throttle(500),
