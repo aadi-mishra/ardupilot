@@ -357,7 +357,6 @@ private:
     void update_aux(void);
     void one_second_loop(void);
     void update_GPS_50Hz(void);
-    void update_navigation();
     void send_heartbeat(mavlink_channel_t chan);
     void send_attitude(mavlink_channel_t chan);
     void send_extended_status1(mavlink_channel_t chan);

@@ -51,7 +51,6 @@ const AP_Scheduler::Task Rover::scheduler_tasks[] PROGMEM = {
     { SCHED_TASK(set_servos),             1,   1500 },
     { SCHED_TASK(update_GPS_50Hz),        1,   2500 },
     { SCHED_TASK(update_alt),             5,   3400 },
-    { SCHED_TASK(navigate),               5,   1600 },
     { SCHED_TASK(update_compass),         5,   2000 },
     { SCHED_TASK(update_logging1),        5,   1000 },
     { SCHED_TASK(update_logging2),        5,   1000 },
@@ -313,23 +312,6 @@ void Rover::update_GPS_50Hz(void)
     }
 }
 
-void Rover::update_navigation()
-{
-    switch (control_mode) {
-    case MANUAL:
-    case HOLD:
-    case LEARNING:
-    case STEERING:
-    case INITIALISING:
-        break;
- 
-    case RTL:
-        // no loitering around the wp with the rover, goes direct to the wp position
-        calc_lateral_acceleration();
-        calc_nav_steer();
-        break;
-    }
-}
 
 void setup(void);
 void loop(void);

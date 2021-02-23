@@ -280,16 +280,6 @@ void Rover::set_mode(enum mode mode)
     set_reverse(false);
     g.pidSpeedThrottle.reset_I();
         
-	switch(control_mode)
-	{
-		case MANUAL:
-		case HOLD:
-		case LEARNING:
-		case STEERING:
-			break;
-		default:
-			break;
-	}
 
 	if (should_log(MASK_LOG_MODE)) {
         DataFlash.Log_Write_Mode(control_mode);
